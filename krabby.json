@@ -1,0 +1,10 @@
+{
+  "tests": [ {
+    "name": "jshint",
+    "files": ["./**/*.js", "!./node_module"],
+    "testConfig": {
+      "browser": true
+    }
+  } ],
+  "reports": [ "badge" ]
+}
