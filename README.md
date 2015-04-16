@@ -22,10 +22,8 @@ Next, you will need to create your configuration. This is just a simple JSON obj
 
 ```json
 {
-  "krabby": {
-    "tests": [ "jshint" ],
-    "reports": [ "badge" ]
-  }
+  "tests": [ "jshint" ],
+  "reports": [ "badge" ]
 }
 ```
 
@@ -33,16 +31,14 @@ The only fields that are required are `tests` and `reports`. Each take an array 
 
 ```json
 {
-  "krabby": {
-    "tests": [ {
-      "name": "jshint",
-      "files": ["./**/*.js", "!./node_module"],
-      "testConfig": {
-        "browser": true
-      }
-    } ],
-    "reports": [ "badge" ]
-  }
+  "tests": [ {
+    "name": "jshint",
+    "files": ["./**/*.js", "!./node_module"],
+    "testConfig": {
+      "browser": true
+    }
+  } ],
+  "reports": [ "badge" ]
 }
 ```
 
