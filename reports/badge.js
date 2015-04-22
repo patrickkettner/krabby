@@ -1,4 +1,4 @@
-var BaseKrabbyReport = require('./_baseReport');
+var BaseKrabbyReport = require('./_base-report');
 var baseConfig = {};
 
 function badge(results, cb) {

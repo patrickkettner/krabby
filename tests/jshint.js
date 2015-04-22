@@ -1,4 +1,4 @@
-var krabbyTest = require('./_baseTest');
+var krabbyTest = require('./_base-test');
 var jshint = require('jshint').JSHINT;
 var Async = require('async');
 var FS = require('fs');
