@@ -1,26 +1,23 @@
 var _ = require('lodash');
-var _baseTest = require('../../../../lib/tests/_baseTest.js');
+var BaseTest = require('../../../../lib/tests/_baseTest.js');
 
 describe("lib/tests/_baseTest.js", function () {
   describe('configuration', function() {
     it('should create a config property when no config is passed in', function() {
-      var FakeTester = _baseTest();
-      var fakeTester = new FakeTester();
+      var fakeTester = new BaseTest();
 
       assert(_.isEqual(fakeTester.config, {}));
     });
     it('should create a config property when only runtimeConfig is passed in', function() {
       var runtimeTestConfig = { runtime: true };
-
-      var FakeTester = _baseTest();
-      var fakeTester = new FakeTester(runtimeTestConfig);
+      var fakeTester = new BaseTest(runtimeTestConfig);
 
       assert(_.isEqual(fakeTester.config, runtimeTestConfig));
     });
     it('should create a config property when only baseConfig is passed in', function() {
       var baseTestConfig = { base: true };
 
-      var FakeTester = _baseTest(baseTestConfig);
+      var FakeTester = BaseTest.extend({ config: baseTestConfig });
       var fakeTester = new FakeTester();
 
       assert(_.isEqual(fakeTester.config, baseTestConfig));
@@ -43,7 +40,7 @@ describe("lib/tests/_baseTest.js", function () {
       var baseTestConfigCopy = JSON.parse(JSON.stringify(baseTestConfig));
       var runtimeTestConfigCopy = JSON.parse(JSON.stringify(runtimeTestConfig));
 
-      var FakeTester = _baseTest(baseTestConfig);
+      var FakeTester = BaseTest.extend({ config: baseTestConfig});
       var fakeTester = new FakeTester(runtimeTestConfig);
 
       assert(_.isEqual(baseTestConfig, baseTestConfigCopy));
@@ -65,7 +62,7 @@ describe("lib/tests/_baseTest.js", function () {
         }
       };
 
-      var FakeTester = _baseTest(baseTestConfig);
+      var FakeTester = BaseTest.extend({ config: baseTestConfig });
       var fakeTester = new FakeTester(runtimeTestConfig);
 
       assert(fakeTester.config.deep.common === "runtime");
@@ -75,22 +72,12 @@ describe("lib/tests/_baseTest.js", function () {
   });
   describe('default test method', function() {
     it('should have a test method', function() {
-      var FakeTester = _baseTest();
-      var fakeTester = new FakeTester();
-
+      var fakeTester = new BaseTest();
       assert(_.isFunction(fakeTester.test));
     });
     it('should throw an Error when executed', function() {
-      var FakeTester = _baseTest();
-      var fakeTester = new FakeTester();
-
-      var error = false;
-      try {
-        fakeTester.test()
-      } catch (e) {
-        error = true;
-      }
-      assert(error);
+      var fakeTester = new BaseTest();
+      assert.throws(fakeTester.test, /no test defined for test/);
     });
   });
 });

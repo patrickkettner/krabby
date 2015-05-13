@@ -26,6 +26,7 @@
     "jshint": "^2.6.3",
     "lodash": "^3.7.0",
     "mocha-lcov-reporter": "0.0.2",
+    "simple-extend": "^0.1.0",
     "yargs": "^3.7.0"
   },
   "devDependencies": {
