@@ -3,6 +3,12 @@ var _baseReport = require('../../../../lib/reports/_baseReport.js');
 
 describe("lib/reports/_baseReport.js", function () {
   describe('configuration', function() {
+    it('should throw an error when baseReport.report is not overwritten', function() {
+      var FakeReporter = _baseReport();
+      var fakeReporter = new FakeReporter();
+
+      assert.throws(fakeReporter.report, /no report defined for test/);
+    });
     it('should create a config property when no config is passed in', function() {
       var FakeReporter = _baseReport();
       var fakeReporter = new FakeReporter();
